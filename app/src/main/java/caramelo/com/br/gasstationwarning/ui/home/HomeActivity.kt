@@ -17,9 +17,6 @@ class HomeActivity : AppCompatActivity() {
                 loadFragment(StationListFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
-
-            }
             R.id.navigation_notifications -> {
                 loadFragment(AboutFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
