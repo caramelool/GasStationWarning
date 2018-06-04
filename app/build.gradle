@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "caramelo.com.br.gasstationwarning"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    signingConfigs {
+        debug {
+            storeFile file("gasstation.keystore")
+            storePassword "gasstation"
+            keyAlias "gasstation.keystore"
+            keyPassword "gasstation"
+        }
+        release {
+            storeFile file("gasstation.keystore")
+            storePassword "gasstation"
+            keyAlias "gasstation.keystore"
+            keyPassword "gasstation"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-vector-drawable:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.google.code.gson:gson:2.8.4'
+
+    //Arch
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-firestore:17.0.1'
+
+    //Facebook
+    implementation 'com.facebook.android:facebook-login:4.33.0'
+
+    //Kodein
+    implementation 'org.kodein.di:kodein-di-generic-jvm:5.0.0'
+    implementation 'org.kodein.di:kodein-di-framework-android:5.0.0'
+}
+
+apply plugin: 'com.google.gms.google-services'

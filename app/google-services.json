@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "192575534203",
+    "firebase_url": "https://gasstationwarning.firebaseio.com",
+    "project_id": "gasstationwarning",
+    "storage_bucket": "gasstationwarning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192575534203:android:f88e6903c08f84ae",
+        "android_client_info": {
+          "package_name": "caramelo.com.br.gasstationwarning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192575534203-n9m5p4oh6d6b9q68l3aacpshmqes8n8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "caramelo.com.br.gasstationwarning",
+            "certificate_hash": "5118f3d7d7e3eba0032f49ea959e0bf352f6b3a8"
+          }
+        },
+        {
+          "client_id": "192575534203-pjlncuakfd31poec413lnc4pkhro7m96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "caramelo.com.br.gasstationwarning",
+            "certificate_hash": "b71d4c66a60c8ba4d2713b3546eb14070627b0e1"
+          }
+        },
+        {
+          "client_id": "192575534203-3e9gsc3afqjnpiqlcrhm7jcc1hsi10kf.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "192575534203-3e9gsc3afqjnpiqlcrhm7jcc1hsi10kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp54tL5Zmm8p9eOzJDKvrwH3sFUsPjGhQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192575534203-3e9gsc3afqjnpiqlcrhm7jcc1hsi10kf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
