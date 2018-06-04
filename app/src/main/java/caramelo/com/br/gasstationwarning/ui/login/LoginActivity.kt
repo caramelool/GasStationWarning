@@ -3,6 +3,8 @@ package caramelo.com.br.gasstationwarning.ui.login
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.view.View
 import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.ui.BaseActivity
@@ -62,6 +64,9 @@ class LoginActivity : BaseActivity(loginModule) {
     }
 
     private fun setupAnonymous() {
+        val spannable = SpannableString(anonymousLoginTextView.text)
+        spannable.setSpan(UnderlineSpan(), 0, spannable.length, 0)
+        anonymousLoginTextView.text = spannable
         anonymousLoginTextView.setOnClickListener {
             viewModel.handleAnonymousLogin()
         }
