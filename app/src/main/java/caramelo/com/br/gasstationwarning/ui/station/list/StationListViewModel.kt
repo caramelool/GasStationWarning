@@ -4,8 +4,8 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import caramelo.com.br.gasstationwarning.data.model.Station
-import caramelo.com.br.gasstationwarning.data.repository.StationListReceiver
 import caramelo.com.br.gasstationwarning.data.repository.StationRepository
+import caramelo.com.br.gasstationwarning.data.repository.StationRepositoryReceiver
 
 class StationListViewModel(
         private val lifecycle: Lifecycle,
@@ -25,11 +25,11 @@ class StationListViewModel(
         showLoading()
         repository.list().observe({lifecycle}) { receiver ->
             when(receiver) {
-                is StationListReceiver.List -> {
+                is StationRepositoryReceiver.List -> {
                     val handler = StationListHandle.Receiver(receiver.list)
                     stationLiveData?.postValue(handler)
                 }
-                is StationListReceiver.Exception -> {
+                is StationRepositoryReceiver.Exception -> {
                     val handler = StationListHandle.Empty()
                     stationLiveData?.postValue(handler)
                 }

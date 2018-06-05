@@ -1,10 +1,10 @@
 package caramelo.com.br.gasstationwarning.ui.station.list
 
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.data.model.Station
+import caramelo.com.br.gasstationwarning.ui.BaseViewHolder
 import kotlinx.android.synthetic.main.adapter_station.view.*
 
 class StationListAdapter(
@@ -28,9 +28,7 @@ class StationListAdapter(
 
     inner class Holder(
             parent: ViewGroup
-    ) : RecyclerView.ViewHolder(
-            LayoutInflater.from(parent.context)
-                    .inflate(R.layout.adapter_station, parent, false)) {
+    ) : BaseViewHolder(parent, R.layout.adapter_station) {
 
         fun bind(station: Station) {
             with(itemView) {

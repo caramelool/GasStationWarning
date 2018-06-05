@@ -1,6 +1,5 @@
 package caramelo.com.br.gasstationwarning.ui.station.list
 
-import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.app.Fragment
@@ -16,7 +15,6 @@ val stationListModule = Kodein.Module {
                 .of(instance<Fragment>(), instance())
                 .get(StationListViewModel::class.java)
     }
-    bind<Lifecycle>() with provider { instance<Fragment>().lifecycle }
     bind<ViewModelProvider.Factory>() with provider {
         viewModelFactory {
             StationListViewModel(instance(), instance())

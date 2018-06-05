@@ -10,21 +10,20 @@ import com.google.firebase.firestore.Query
 class StationRepository(
     private val stationCollection: CollectionReference
 ) {
-    fun list() : LiveData<StationListReceiver> {
-        val liveData = MutableLiveData<StationListReceiver>()
+    fun list() : LiveData<StationRepositoryReceiver> {
+        val liveData = MutableLiveData<StationRepositoryReceiver>()
         stationCollection
                 .orderBy("name", Query.Direction.ASCENDING)
                 .addSnapshotListener { querySnapshot, exception ->
                     if (exception != null) {
-                        val receiver = StationListReceiver.Exception(exception)
+                        val receiver = StationRepositoryReceiver.Exception(exception)
                         liveData.postValue(receiver)
                         return@addSnapshotListener
                     }
-                    val list = mutableListOf<Station>()
-                    querySnapshot
+                    val list = querySnapshot
                             ?.map { document -> Station.fromDocument(document) }
-                            ?.forEach { station -> list.add(station) }
-                    val receiver = StationListReceiver.List(list)
+                            ?: listOf()
+                    val receiver = StationRepositoryReceiver.List(list)
                     liveData.postValue(receiver)
                 }
         return liveData
@@ -38,9 +37,29 @@ class StationRepository(
                     }
                 }
     }
+
+    fun detail(documentId: String) : LiveData<StationRepositoryReceiver> {
+        val liveData = MutableLiveData<StationRepositoryReceiver>()
+        stationCollection
+                .document(documentId)
+                .addSnapshotListener { documentSnapshot, exception ->
+                    val receiver = when (exception) {
+                        null -> {
+                            val station = Station.fromDocument(documentSnapshot)
+                            StationRepositoryReceiver.Detail(station)
+                        }
+                        else -> {
+                            StationRepositoryReceiver.Exception(exception)
+                        }
+                    }
+                    liveData.postValue(receiver)
+                }
+        return liveData
+    }
 }
 
-sealed class StationListReceiver {
-    data class List(val list: kotlin.collections.List<Station>) : StationListReceiver()
-    data class Exception(val e: FirebaseFirestoreException) : StationListReceiver()
+sealed class StationRepositoryReceiver {
+    data class List(val list: kotlin.collections.List<Station>) : StationRepositoryReceiver()
+    data class Detail(val station: Station) : StationRepositoryReceiver()
+    data class Exception(val e: FirebaseFirestoreException) : StationRepositoryReceiver()
 }
