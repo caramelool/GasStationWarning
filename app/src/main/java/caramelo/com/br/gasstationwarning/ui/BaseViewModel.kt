@@ -9,13 +9,11 @@ import org.kodein.di.generic
 
 fun <C> Kodein.BindBuilder.WithContext<C>.viewModelFactory(
         creator: NoArgBindingKodein<C>.() -> ViewModel
-): Provider<C, ViewModelProvider.Factory> {
-    return Provider(contextType, generic(), {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return creator() as T
-            }
+) = Provider<C, ViewModelProvider.Factory>(contextType, generic(), {
+    object : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            @Suppress("UNCHECKED_CAST")
+            return creator() as T
         }
-    })
-}
+    }
+})
