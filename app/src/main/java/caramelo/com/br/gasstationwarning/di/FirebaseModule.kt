@@ -13,9 +13,6 @@ val firebaseModule = Kodein.Module {
     bind<FirebaseAuth>() with singleton { FirebaseAuth.getInstance() }
     bind<FirebaseFirestore>() with singleton { FirebaseFirestore.getInstance() }
     bind<CollectionReference>("stations_collection") with provider {
-        stationCollection(instance())
+        instance<FirebaseFirestore>().collection("stations")
     }
 }
-
-
-private fun stationCollection(db: FirebaseFirestore) = db.collection("stations")

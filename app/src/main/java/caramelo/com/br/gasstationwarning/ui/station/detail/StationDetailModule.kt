@@ -19,9 +19,7 @@ val stationDetailModule = Kodein.Module {
     bind<Station>() with provider {
         instance<FragmentActivity>().intent.getParcelableExtra(EXTRA_STATION) as Station
     }
-    bind<ViewModelProvider.Factory>() with provider {
-        viewModelFactory {
-            StationDetailViewModel(instance(), instance(), instance())
-        }
+    bind<ViewModelProvider.Factory>() with viewModelFactory {
+        StationDetailViewModel(instance(), instance(), instance())
     }
 }

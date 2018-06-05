@@ -15,9 +15,7 @@ val stationListModule = Kodein.Module {
                 .of(instance<Fragment>(), instance())
                 .get(StationListViewModel::class.java)
     }
-    bind<ViewModelProvider.Factory>() with provider {
-        viewModelFactory {
-            StationListViewModel(instance(), instance())
-        }
+    bind<ViewModelProvider.Factory>() with viewModelFactory {
+        StationListViewModel(instance(), instance())
     }
 }

@@ -18,7 +18,7 @@ abstract class BaseFragment(
     override val kodein = Kodein.lazy {
         extend(closestKodein)
         import(module)
-        bind<Fragment>() with singleton { this@BaseFragment }
+        bind<Fragment>() with provider { this@BaseFragment }
         bind<FragmentActivity>() with provider { activity ?: throw IllegalStateException() }
         bind<Lifecycle>() with provider { lifecycle }
     }

@@ -15,9 +15,7 @@ val splashModule = Kodein.Module {
                 .of(instance<FragmentActivity>(), instance())
                 .get(SplashViewModel::class.java)
     }
-    bind<ViewModelProvider.Factory>() with provider {
-        viewModelFactory {
-            SplashViewModel(instance())
-        }
+    bind<ViewModelProvider.Factory>() with viewModelFactory {
+        SplashViewModel(instance())
     }
 }

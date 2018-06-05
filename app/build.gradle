@@ -14,6 +14,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     signingConfigs {
         debug {
@@ -53,6 +54,7 @@ dependencies {
     implementation 'com.android.support:support-vector-drawable:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.google.code.gson:gson:2.8.4'
+    implementation 'com.android.support:multidex:1.0.3'
 
     //Arch
     implementation 'android.arch.lifecycle:extensions:1.1.1'

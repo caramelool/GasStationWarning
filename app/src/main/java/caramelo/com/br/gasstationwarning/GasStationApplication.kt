@@ -1,7 +1,9 @@
 package caramelo.com.br.gasstationwarning
 
-import android.app.Application
+import android.content.Context
 import android.content.pm.PackageManager
+import android.support.multidex.MultiDex
+import android.support.multidex.MultiDexApplication
 import android.util.Base64
 import android.util.Log
 import caramelo.com.br.gasstationwarning.data.LoginManager
@@ -15,10 +17,16 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import java.security.MessageDigest
 
-class GasStationApplication : Application(), KodeinAware {
+class GasStationApplication : MultiDexApplication(), KodeinAware {
+
     override fun onCreate() {
         super.onCreate()
         logKeyHash()
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     override val kodein = Kodein.lazy {

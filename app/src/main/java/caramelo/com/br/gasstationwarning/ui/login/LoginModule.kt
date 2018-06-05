@@ -15,9 +15,7 @@ val loginModule = Kodein.Module {
                 .of(instance<FragmentActivity>(), instance())
                 .get(LoginViewModel::class.java)
     }
-    bind<ViewModelProvider.Factory>() with provider {
-        viewModelFactory {
-            LoginViewModel(instance())
-        }
+    bind<ViewModelProvider.Factory>() with viewModelFactory {
+        LoginViewModel(instance())
     }
 }

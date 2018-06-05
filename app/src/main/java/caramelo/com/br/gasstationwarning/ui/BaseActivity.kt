@@ -19,7 +19,7 @@ abstract class BaseActivity(
     override val kodein = Kodein.lazy {
         extend(closestKodein)
         import(module)
-        bind<FragmentActivity>() with singleton { this@BaseActivity }
+        bind<FragmentActivity>() with provider { this@BaseActivity }
         bind<Lifecycle>() with provider { lifecycle }
     }
 
