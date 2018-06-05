@@ -21,9 +21,10 @@ class StationListFragment : BaseFragment(stationListModule.init) {
     private val viewModel: StationListViewModel by kodein.instance()
 
     private val adapter = StationListAdapter { station ->
-        val context = context ?: return@StationListAdapter
-        val intent = StationDetailActivity.getIntent(context, station)
-        context.startActivity(intent)
+        context?.let {
+            val intent = StationDetailActivity.getIntent(it, station)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
