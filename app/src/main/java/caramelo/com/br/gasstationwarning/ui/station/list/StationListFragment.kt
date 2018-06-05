@@ -12,7 +12,7 @@ import caramelo.com.br.gasstationwarning.ui.station.detail.StationDetailActivity
 import kotlinx.android.synthetic.main.fragment_station_list.*
 import org.kodein.di.generic.instance
 
-class StationListFragment : BaseFragment(stationListModule) {
+class StationListFragment : BaseFragment(stationListModule.init) {
 
     companion object {
         fun newInstance() = StationListFragment()

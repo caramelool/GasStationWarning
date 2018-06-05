@@ -8,7 +8,7 @@ import caramelo.com.br.gasstationwarning.ui.home.HomeActivity
 import caramelo.com.br.gasstationwarning.ui.login.LoginActivity
 import org.kodein.di.generic.instance
 
-class SplashActivity : BaseActivity(splashModule) {
+class SplashActivity : BaseActivity(splashModule.init) {
 
     private val viewModel: SplashViewModel by kodein.instance()
 

@@ -16,7 +16,7 @@ import caramelo.com.br.gasstationwarning.ui.station.detail.StationDetailAdapterH
 
 const val EXTRA_STATION = "extra_station"
 
-class StationDetailActivity : BaseActivity(stationDetailModule) {
+class StationDetailActivity : BaseActivity(stationDetailModule.init) {
 
     companion object {
         fun getIntent(

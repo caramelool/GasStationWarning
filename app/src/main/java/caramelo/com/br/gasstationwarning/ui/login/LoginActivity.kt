@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 import org.kodein.di.generic.instance
 
-class LoginActivity : BaseActivity(loginModule) {
+class LoginActivity : BaseActivity(loginModule.init) {
 
     private val viewModel: LoginViewModel by kodein.instance()
 

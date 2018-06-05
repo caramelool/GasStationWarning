@@ -8,7 +8,7 @@ import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.ui.BaseFragment
 import org.kodein.di.generic.instance
 
-class AboutFragment : BaseFragment(aboutModule) {
+class AboutFragment : BaseFragment(aboutModule.init) {
 
     private val viewModel: AboutViewModel by kodein.instance()
 
