@@ -10,10 +10,9 @@ import org.kodein.di.bindings.NoArgBindingKodein
 import org.kodein.di.bindings.Provider
 import org.kodein.di.generic
 import org.kodein.di.generic.instance
-import kotlin.reflect.KClass
 
 inline fun <reified C, reified VM: ViewModel> Kodein.BindBuilder.WithContext<C>.viewModelActivity(
-        crossinline viewModel: NoArgBindingKodein<C>.() -> ViewModel?
+    crossinline viewModel: NoArgBindingKodein<C>.() -> ViewModel?
 ) = Provider(contextType, generic(), {
     var factory: ViewModelProvider.Factory? = null
     viewModel()?.let { viewModel ->
@@ -30,7 +29,7 @@ inline fun <reified C, reified VM: ViewModel> Kodein.BindBuilder.WithContext<C>.
 })
 
 inline fun <reified C, reified VM: ViewModel> Kodein.BindBuilder.WithContext<C>.viewModelFragment(
-        crossinline viewModel: NoArgBindingKodein<C>.() -> ViewModel?
+    crossinline viewModel: NoArgBindingKodein<C>.() -> ViewModel?
 ) = Provider(contextType, generic(), {
     var factory: ViewModelProvider.Factory? = null
     viewModel()?.let { viewModel ->
