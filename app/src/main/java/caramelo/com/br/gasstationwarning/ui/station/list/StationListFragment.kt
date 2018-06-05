@@ -20,7 +20,7 @@ class StationListFragment : BaseFragment(stationListModule.init) {
 
     private val viewModel: StationListViewModel by kodein.instance()
 
-    private val stationAdapter = StationListAdapter { station ->
+    private val adapter = StationListAdapter { station ->
         val context = context ?: return@StationListAdapter
         val intent = StationDetailActivity.getIntent(context, station)
         context.startActivity(intent)
@@ -34,11 +34,9 @@ class StationListFragment : BaseFragment(stationListModule.init) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(stationRecyclerView) {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = stationAdapter
-        }
+        stationRecyclerView.layoutManager = LinearLayoutManager(context)
+        stationRecyclerView.setHasFixedSize(true)
+        stationRecyclerView.adapter = adapter
 
         viewModel.stationLiveData?.observe(this, stationObserver)
     }
@@ -47,7 +45,7 @@ class StationListFragment : BaseFragment(stationListModule.init) {
         when(handle) {
             is StationListHandle.Receiver -> {
                 showList()
-                stationAdapter.data = handle.list
+                adapter.data = handle.list
             }
             is StationListHandle.Empty -> showEmpty()
             is StationListHandle.Loading -> showLoading()
