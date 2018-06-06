@@ -4,11 +4,14 @@ import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 import android.view.View
 import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.data.model.Station
 import caramelo.com.br.gasstationwarning.ui.BaseActivity
+import caramelo.com.br.gasstationwarning.ui.station.comment.StationCommentFragment
 import kotlinx.android.synthetic.main.activity_station_detail.*
 import kotlinx.android.synthetic.main.content_station_detail.*
 import org.kodein.di.generic.instance
@@ -16,7 +19,7 @@ import caramelo.com.br.gasstationwarning.ui.station.detail.StationDetailAdapterH
 
 const val EXTRA_STATION = "extra_station"
 
-class StationDetailActivity : BaseActivity(stationDetailModule.init) {
+class StationDetailActivity : BaseActivity(stationDetailModule.init), DetailViewModelProvider {
 
     companion object {
         fun getIntent(
@@ -27,8 +30,7 @@ class StationDetailActivity : BaseActivity(stationDetailModule.init) {
         }
     }
 
-    private val viewModel: StationDetailViewModel by kodein.instance()
-    private val adapter = StationDetailAdapter()
+    override val viewModel: StationDetailViewModel by kodein.instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +38,8 @@ class StationDetailActivity : BaseActivity(stationDetailModule.init) {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        stationRecyclerView.layoutManager = LinearLayoutManager(this)
-        stationRecyclerView.setHasFixedSize(true)
-        stationRecyclerView.isNestedScrollingEnabled = false
-        stationRecyclerView.adapter = adapter
+        pager.adapter = Adapter(supportFragmentManager)
+        tabs.setupWithViewPager(pager)
 
         viewModel.detailLiveData?.observe(this, detailObserver)
     }
@@ -57,43 +57,39 @@ class StationDetailActivity : BaseActivity(stationDetailModule.init) {
         loading.visibility = View.GONE
         with(station) {
             showWarning(!hasFull)
-            stationNameTextView.text = name
-            stationAddressTextView.text = address
-            bindAdapter(this)
+            toolbarLayout.title = name
         }
     }
 
     private fun showWarning(show: Boolean) {
-        val y = if (show) 0 else -stationWarningTextView.height
-        stationWarningTextView.animate()
-                .y(y.toFloat())
-                .setDuration(100)
-                .start()
-    }
-
-    private fun bindAdapter(station: Station) {
-        val list = mutableListOf<StationDetailAdapterHandler>()
-        with(station) {
-            if (!phone.isNullOrEmpty()) {
-                val handler = HandlerDescription(
-                        getString(R.string.phone),
-                        phone!!
-                )
-                list.add(handler)
-            }
-            if (!description.isNullOrEmpty()) {
-                val handler = HandlerDescription(
-                        getString(R.string.description),
-                        description!!
-                )
-                list.add(handler)
-            }
-        }
-        adapter.data = list
+        val visibility = if (show) View.VISIBLE else View.GONE
+        stationWarningTextView.visibility = visibility
     }
 
     private fun showLoading() {
         container.visibility = View.GONE
         loading.visibility = View.VISIBLE
     }
+
+    private inner class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+        override fun getItem(position: Int): Fragment {
+            return when(position) {
+                0 -> StationDetailInfoFragment()
+                else -> StationCommentFragment.newInstance(viewModel.station)
+            }
+        }
+
+        override fun getCount() = 2
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return when(position) {
+                0 -> getString(R.string.tab_info)
+                else -> getString(R.string.tab_comment)
+            }
+        }
+    }
+}
+
+interface DetailViewModelProvider {
+    val viewModel: StationDetailViewModel
 }

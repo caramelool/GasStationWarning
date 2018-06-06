@@ -8,9 +8,9 @@ import caramelo.com.br.gasstationwarning.data.repository.StationRepository
 import caramelo.com.br.gasstationwarning.data.repository.StationRepositoryReceiver
 
 class StationDetailViewModel(
-        private val station: Station,
+        val station: Station,
         private val lifecycle: Lifecycle,
-        private val stationRepository: StationRepository
+        private val repository: StationRepository
 ) : ViewModel() {
 
     private val documentId = station.getId()
@@ -26,7 +26,7 @@ class StationDetailViewModel(
 
     private fun doDetail() {
         detailLiveData?.postValue(StationDetailHandler.Loading())
-        stationRepository.detail(documentId)
+        repository.detail(documentId)
             .observe({lifecycle}) { receiver ->
                 when(receiver) {
                     is StationRepositoryReceiver.Detail -> {

@@ -9,6 +9,8 @@ import caramelo.com.br.gasstationwarning.ui.about.AboutFragment
 import caramelo.com.br.gasstationwarning.ui.station.list.StationListFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
+private const val EXTRA_SELECTED_ITEM_ID = "EXTRA_SELECTED_ITEM_ID"
+
 class HomeActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -31,7 +33,10 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navigation.selectedItemId = R.id.navigation_home
+
+        navigation.selectedItemId = savedInstanceState?.getInt(EXTRA_SELECTED_ITEM_ID, R.id.navigation_home)
+                ?: R.id.navigation_home
+
     }
 
     override fun onBackPressed() {
@@ -40,6 +45,11 @@ class HomeActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putInt(EXTRA_SELECTED_ITEM_ID, navigation.selectedItemId)
     }
 
     private fun loadFragment(fragment: Fragment) {

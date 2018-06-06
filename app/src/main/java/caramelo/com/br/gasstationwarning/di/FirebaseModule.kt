@@ -15,4 +15,7 @@ val firebaseModule = Kodein.Module {
     bind<CollectionReference>("stations_collection") with provider {
         instance<FirebaseFirestore>().collection("stations")
     }
+    bind<CollectionReference>("comments_collection") with provider {
+        instance<FirebaseFirestore>().collection("comments")
+    }
 }

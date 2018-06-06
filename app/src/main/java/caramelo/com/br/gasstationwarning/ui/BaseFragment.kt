@@ -5,16 +5,15 @@ import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.provider
 
 abstract class BaseFragment(
-        private val module: Kodein.Builder.() -> Unit
-) : Fragment(), KodeinAware {
+        private val module: Kodein.Builder.() -> Unit = {}
+) : Fragment() {
     private val closestKodein by closestKodein()
-    override val kodein = Kodein.lazy {
+    protected val kodein = Kodein.lazy {
         extend(closestKodein)
         import(Kodein.Module(init = module))
         bind<Fragment>() with provider { this@BaseFragment }

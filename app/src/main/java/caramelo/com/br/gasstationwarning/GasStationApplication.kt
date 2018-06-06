@@ -6,7 +6,7 @@ import android.support.multidex.MultiDex
 import android.support.multidex.MultiDexApplication
 import android.util.Base64
 import android.util.Log
-import caramelo.com.br.gasstationwarning.data.LoginManager
+import caramelo.com.br.gasstationwarning.data.UserManager
 import caramelo.com.br.gasstationwarning.di.facebookModule
 import caramelo.com.br.gasstationwarning.di.firebaseModule
 import caramelo.com.br.gasstationwarning.di.repositoryModule
@@ -33,7 +33,7 @@ class GasStationApplication : MultiDexApplication(), KodeinAware {
         import(firebaseModule)
         import(facebookModule)
         import(repositoryModule)
-        bind<LoginManager>() with provider { LoginManager(instance(), instance()) }
+        bind<UserManager>() with provider { UserManager(instance(), instance()) }
     }
 
     private fun logKeyHash() {

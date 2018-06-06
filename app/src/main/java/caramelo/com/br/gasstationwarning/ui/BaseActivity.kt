@@ -7,17 +7,16 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.provider
 
 abstract class BaseActivity(
         private val module: Kodein.Builder.() -> Unit
-): AppCompatActivity(), KodeinAware {
+): AppCompatActivity() {
 
     private val closestKodein by closestKodein()
-    override val kodein = Kodein.lazy {
+    protected val kodein = Kodein.lazy {
         extend(closestKodein)
         import(Kodein.Module(init = module))
         bind<FragmentActivity>() with provider { this@BaseActivity }

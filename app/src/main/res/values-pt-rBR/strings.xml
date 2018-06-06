@@ -3,8 +3,20 @@
     <string name="app_description">Localize postos de abastecimento e encontre a melhor opção em economia e segurança para o seu carro</string>
     <string name="continue_anonymous">Continue sem logar</string>
     <string name="station_empty_warning">Posto sem Combustível</string>
+    <string name="address">Endereço</string>
     <style name="description">Descrição</style>
     <string name="phone">Telefone</string>
+    <string name="date">Data</string>
+    <string name="comment">Enviar comentário</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+
+    <string name="tab_info">Detalhe</string>
+    <string name="tab_comment">Comentários</string>
+    <string name="empty_station">Nenhum posto encontrado</string>
+    <string name="empty_comment">Nenhum comentário</string>
+    <string name="title_delete_comment">Deletar comentário</string>
+    <string name="message_delete_comment">Deseja realmente deletar esse comentário?</string>
 
     <string name="title_activity_station_detail">Posto</string>
 </resources>

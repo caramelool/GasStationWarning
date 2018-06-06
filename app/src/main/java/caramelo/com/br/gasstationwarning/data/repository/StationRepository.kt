@@ -31,15 +31,6 @@ class StationRepository(
         return liveData
     }
 
-    fun add(station: Station) {
-        stationCollection.add(station)
-            .addOnCompleteListener { task ->
-                when {
-                    task.isSuccessful -> {}
-                }
-            }
-    }
-
     fun detail(documentId: String) : LiveData<StationRepositoryReceiver> {
         val liveData = MutableLiveData<StationRepositoryReceiver>()
         stationCollection
