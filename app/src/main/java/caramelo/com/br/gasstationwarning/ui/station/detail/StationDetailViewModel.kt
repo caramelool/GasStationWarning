@@ -41,6 +41,27 @@ class StationDetailViewModel(
                 }
             }
     }
+
+    val shareBody by lazy {
+        val station = station
+        return@lazy StringBuffer().apply {
+            append("*${station.name}*")
+            station.fuels?.forEach { fuel ->
+                append("\n")
+                append("*${fuel.name}:* ${fuel.price}")
+            }
+            append("\n")
+            append(station.address)
+            if (station.phone.isNullOrBlank().not()) {
+                append("\n")
+                append(station.phone)
+            }
+            if (station.link.isNullOrBlank().not()) {
+                append("\n")
+                append(station.link)
+            }
+        }.toString()
+    }
 }
 
 sealed class StationDetailHandler {

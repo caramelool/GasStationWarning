@@ -1,5 +1,7 @@
 package caramelo.com.br.gasstationwarning.ui.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -12,6 +14,14 @@ import kotlinx.android.synthetic.main.activity_home.*
 private const val EXTRA_SELECTED_ITEM_ID = "EXTRA_SELECTED_ITEM_ID"
 
 class HomeActivity : AppCompatActivity() {
+
+    companion object {
+        fun getIntent(
+                context: Context
+        )  = Intent(context, HomeActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {

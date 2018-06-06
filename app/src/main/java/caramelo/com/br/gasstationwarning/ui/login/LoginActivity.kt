@@ -1,6 +1,7 @@
 package caramelo.com.br.gasstationwarning.ui.login
 
 import android.arch.lifecycle.Observer
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -19,8 +20,15 @@ import org.kodein.di.generic.instance
 
 class LoginActivity : BaseActivity(loginModule.init) {
 
-    private val viewModel: LoginViewModel by kodein.instance()
+    companion object {
+        fun getIntent(
+                context: Context
+        ) = Intent(context, LoginActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+    }
 
+    private val viewModel: LoginViewModel by kodein.instance()
     private val callbackManager by lazy { CallbackManager.Factory.create() }
 
     override fun onCreate(savedInstanceState: Bundle?) {

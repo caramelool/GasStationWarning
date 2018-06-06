@@ -26,12 +26,12 @@ class SplashActivity : BaseActivity(splashModule.init) {
     }
 
     private fun openLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = LoginActivity.getIntent(this)
         startActivity(intent)
     }
 
     private fun openHome() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = HomeActivity.getIntent(this)
         startActivity(intent)
     }
 }

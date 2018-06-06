@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.data.model.Station
@@ -44,6 +46,18 @@ class StationDetailActivity : BaseActivity(stationDetailModule.init), DetailView
         viewModel.detailLiveData?.observe(this, detailObserver)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_station_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.menu_share -> share()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private val detailObserver = Observer<StationDetailHandler> {
         val handler = it ?: return@Observer
         when(handler) {
@@ -71,19 +85,29 @@ class StationDetailActivity : BaseActivity(stationDetailModule.init), DetailView
         loading.visibility = View.VISIBLE
     }
 
+    private fun share() {
+        val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, viewModel.shareBody)
+        startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)))
+    }
+
     private inner class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return when(position) {
-                0 -> StationDetailInfoFragment()
+                0 -> StationDetailInfoFragment.newInstance()
+                1 -> StationDetailMapFragment.newInstance()
                 else -> StationCommentFragment.newInstance(viewModel.station)
             }
         }
 
-        override fun getCount() = 2
+        override fun getCount() = 3
 
         override fun getPageTitle(position: Int): CharSequence? {
             return when(position) {
                 0 -> getString(R.string.tab_info)
+                1 -> "Mapa"
                 else -> getString(R.string.tab_comment)
             }
         }

@@ -10,6 +10,9 @@
     <string name="comment">Enviar comentário</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="logout">Sair</string>
+    <string name="map">Mapa</string>
+    <string name="share">Compartilhar</string>
 
     <string name="tab_info">Detalhe</string>
     <string name="tab_comment">Comentários</string>
@@ -17,6 +20,5 @@
     <string name="empty_comment">Nenhum comentário</string>
     <string name="title_delete_comment">Deletar comentário</string>
     <string name="message_delete_comment">Deseja realmente deletar esse comentário?</string>
-
-    <string name="title_activity_station_detail">Posto</string>
+    <string name="about_dev_name">Desenvolvido por %s</string>
 </resources>

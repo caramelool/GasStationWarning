@@ -14,6 +14,10 @@ import kotlinx.android.synthetic.main.fragment_station_detail_info.*
 
 class StationDetailInfoFragment : BaseFragment() {
 
+    companion object {
+        fun newInstance() = StationDetailInfoFragment()
+    }
+
     private var viewModel: StationDetailViewModel? = null
     private val adapter = StationDetailAdapter()
 
