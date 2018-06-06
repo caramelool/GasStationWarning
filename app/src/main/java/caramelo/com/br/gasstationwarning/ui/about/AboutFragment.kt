@@ -28,9 +28,11 @@ class AboutFragment : BaseFragment(aboutModule.init) {
         super.onViewCreated(view, savedInstanceState)
 
         val devName = getString(R.string.dev_name)
+        val devRm = getString(R.string.dev_rm)
         val versionName = "v.${BuildConfig.VERSION_NAME}"
         versionNameTextView.text = versionName
         devNameTextView.text = getString(R.string.about_dev_name, devName)
+        devRmTextView.text = getString(R.string.about_dev_rm, devRm)
 
         logoutButton.setOnClickListener {
             val context = context ?: return@setOnClickListener

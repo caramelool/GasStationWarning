@@ -7,7 +7,6 @@ class AboutViewModel(
     private val userManager: UserManager
 ) : ViewModel() {
 
-
     fun signOut() {
         userManager.signOut()
     }

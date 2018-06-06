@@ -25,11 +25,11 @@ class HomeActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_home -> {
+            R.id.navigation_station -> {
                 loadFragment(StationListFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_notifications -> {
+            R.id.navigation_about -> {
                 loadFragment(AboutFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
@@ -44,8 +44,8 @@ class HomeActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        navigation.selectedItemId = savedInstanceState?.getInt(EXTRA_SELECTED_ITEM_ID, R.id.navigation_home)
-                ?: R.id.navigation_home
+        navigation.selectedItemId = savedInstanceState?.getInt(EXTRA_SELECTED_ITEM_ID, R.id.navigation_station)
+                ?: R.id.navigation_station
 
     }
 

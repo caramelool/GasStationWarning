@@ -1,5 +1,6 @@
 <resources>
     <string name="dev_name">Lucas Caramelo</string>
+    <string name="dev_rm">46143</string>
     <string name="app_name">Gas Station Warning</string>
     <string name="app_description">Find gas stations and the best economy and safety option for your car</string>
     <string name="continue_anonymous">Continue without login</string>
@@ -22,15 +23,15 @@
     <string name="title_delete_comment">Comment delete</string>
     <string name="message_delete_comment">Are you sure that like to delete this comment?</string>
     <string name="about_dev_name">Developed by %s</string>
+    <string name="about_dev_rm">RM: %s</string>
 
     <string name="facebook_app_id" translatable="false">330959494098772</string>
 
     <string name="title_activity_login" />
     <string name="title_activity_home">Gas Station Warning</string>
 
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_station">Stations</string>
+    <string name="title_about">About</string>
     <string name="title_activity_station_detail"/>
 
 </resources>
