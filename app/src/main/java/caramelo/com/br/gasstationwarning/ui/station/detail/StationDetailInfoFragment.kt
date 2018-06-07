@@ -66,8 +66,8 @@ class StationDetailInfoFragment : BaseFragment() {
     private fun bindAdapter(station: Station) {
         val list = mutableListOf<StationDetailAdapterHandler>()
         with(station) {
-            val handler = StationDetailAdapterHandler.Rating(rating)
-            list.add(handler)
+            val rating = StationDetailAdapterHandler.Rating(rating)
+            list.add(rating)
             if (!name.isNullOrEmpty()) {
                 val handler = StationDetailAdapterHandler.Description(
                         getString(R.string.name),
