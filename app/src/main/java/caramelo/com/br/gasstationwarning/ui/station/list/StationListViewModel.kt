@@ -26,7 +26,7 @@ class StationListViewModel(
         repository.list().observe({lifecycle}) { receiver ->
             val handler = when(receiver) {
                 is StationRepositoryReceiver.List -> {
-                    if (receiver.list.isEmpty()) {
+                    if (receiver.list.isNotEmpty()) {
                         StationListHandle.Receiver(receiver.list)
                     } else {
                         StationListHandle.Empty()
