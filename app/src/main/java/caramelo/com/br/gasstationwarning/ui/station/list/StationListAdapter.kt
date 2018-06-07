@@ -40,7 +40,7 @@ class StationListAdapter(
                     itemView.alpha = 1f
                 } else {
                     warningFuelImage.visibility = View.VISIBLE
-                    itemView.alpha = 0.6f
+                    itemView.alpha = 0.5f
                 }
                 setOnClickListener {
                     onStationClicked(station)
