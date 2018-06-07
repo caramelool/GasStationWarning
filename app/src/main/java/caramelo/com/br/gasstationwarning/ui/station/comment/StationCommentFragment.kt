@@ -45,6 +45,8 @@ class StationCommentFragment : BaseFragment(stationCommentModule.init) {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
 
+        commentEditText.requestFocus()
+
         sendButton.setOnClickListener {
             val comment = commentEditText.text.toString()
             viewModel.addComment(comment)
