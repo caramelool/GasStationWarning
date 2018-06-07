@@ -41,7 +41,7 @@ class CommentHolder(
             commentDate.text = comment.date
             setOnLongClickListener {
                 onDelete(comment)
-                true
+                return@setOnLongClickListener false
             }
         }
     }

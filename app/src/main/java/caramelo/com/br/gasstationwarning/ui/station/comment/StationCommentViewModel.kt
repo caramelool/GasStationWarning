@@ -1,5 +1,6 @@
 package caramelo.com.br.gasstationwarning.ui.station.comment
 
+import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
@@ -10,19 +11,21 @@ import caramelo.com.br.gasstationwarning.data.repository.CommentRepository
 
 class StationCommentViewModel(
         private val station: Station,
+        private val lifecycle: Lifecycle,
         private val repository: CommentRepository,
         private val userManager: UserManager
 ) : ViewModel() {
 
-    var commentLiveData: LiveData<List<Comment>>? = null
-        get() {
-            if (field == null) {
-                field = repository.list(station.getId())
-            }
-            return field
-        }
+    val commentLiveData = MutableLiveData<List<Comment>>()
 
     val deleteLiveData = MutableLiveData<Comment>()
+
+    fun listComments() {
+        repository.list(station.getId())
+                .observe({lifecycle}) {
+                    commentLiveData.postValue(it)
+                }
+    }
 
     fun addComment(text: String) {
         if (text.isBlank()) return

@@ -15,6 +15,6 @@ val stationCommentModule = Kodein.Module {
         instance<Fragment>().getParcelable(EXTRA_STATION) as? Station ?: throw NullPointerException()
     }
     bind<StationCommentViewModel>() with viewModelFragment {
-        StationCommentViewModel(instance(), instance(), instance())
+        StationCommentViewModel(instance(), instance(), instance(), instance())
     }
 }

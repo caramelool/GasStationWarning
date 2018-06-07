@@ -51,12 +51,14 @@ class StationCommentFragment : BaseFragment(stationCommentModule.init) {
             commentEditText.setText("")
         }
 
-        viewModel.commentLiveData?.observe(this, detailObserver)
+        viewModel.commentLiveData.observe(this, detailObserver)
         viewModel.deleteLiveData.observe(this, Observer<Comment> {
             if (it != null) {
                 showDeleteDialog(it)
             }
         })
+
+        viewModel.listComments()
     }
 
     private val detailObserver = Observer<List<Comment>> {
