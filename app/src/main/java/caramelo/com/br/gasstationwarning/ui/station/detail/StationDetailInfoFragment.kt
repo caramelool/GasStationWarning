@@ -88,7 +88,7 @@ class StationDetailInfoFragment : BaseFragment() {
                 list.add(handler)
             }
             if (!phone.isNullOrEmpty()) {
-                val handler = StationDetailAdapterHandler.Description(
+                val handler = StationDetailAdapterHandler.Phone(
                         getString(R.string.phone),
                         phone!!
                 )
@@ -98,6 +98,13 @@ class StationDetailInfoFragment : BaseFragment() {
                 val handler = StationDetailAdapterHandler.Description(
                         getString(R.string.description),
                         description!!
+                )
+                list.add(handler)
+            }
+            if (!link.isNullOrEmpty()) {
+                val handler = StationDetailAdapterHandler.Link(
+                        getString(R.string.link),
+                        link!!
                 )
                 list.add(handler)
             }

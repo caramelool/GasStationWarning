@@ -16,6 +16,7 @@
     <string name="logout">Logout</string>
     <string name="map">Map</string>
     <string name="share">Share</string>
+    <string name="link">Link</string>
 
     <string name="tab_info">Detail</string>
     <string name="tab_comment">Comments</string>

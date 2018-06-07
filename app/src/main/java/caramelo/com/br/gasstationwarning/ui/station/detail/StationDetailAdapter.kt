@@ -1,6 +1,7 @@
 package caramelo.com.br.gasstationwarning.ui.station.detail
 
 import android.support.v7.widget.RecyclerView
+import android.text.util.Linkify
 import android.view.ViewGroup
 import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.ui.BaseViewHolder
@@ -11,6 +12,8 @@ class StationDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         const val TYPE_DESCRIPTION = 1
         const val TYPE_FUEL = 2
+        const val TYPE_PHONE = 3
+        const val TYPE_LINK = 4
     }
 
     var data: List<StationDetailAdapterHandler> = listOf()
@@ -23,6 +26,8 @@ class StationDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return when(viewType) {
             TYPE_DESCRIPTION -> DescriptionHolder(parent)
             TYPE_FUEL -> FuelHolder(parent)
+            TYPE_PHONE -> PhoneHolder(parent)
+            TYPE_LINK -> LinkHolder(parent)
             else -> throw IllegalStateException()
         }
     }
@@ -32,6 +37,8 @@ class StationDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when(holder) {
             is DescriptionHolder -> holder.bind(item as StationDetailAdapterHandler.Description)
             is FuelHolder -> holder.bind(item as StationDetailAdapterHandler.Fuel)
+            is PhoneHolder -> holder.bind(item as StationDetailAdapterHandler.Phone)
+            is LinkHolder -> holder.bind(item as StationDetailAdapterHandler.Link)
         }
     }
 
@@ -49,6 +56,14 @@ sealed class StationDetailAdapterHandler(val type: Int) {
             val name: String,
             val price: String
     ) : StationDetailAdapterHandler(StationDetailAdapter.TYPE_FUEL)
+    data class Phone(
+            val label: String,
+            val phone: String
+    ) : StationDetailAdapterHandler(StationDetailAdapter.TYPE_PHONE)
+    data class Link(
+            val label: String,
+            val link: String
+    ) : StationDetailAdapterHandler(StationDetailAdapter.TYPE_LINK)
 }
 
 private class DescriptionHolder(
@@ -59,6 +74,32 @@ private class DescriptionHolder(
         with(itemView) {
             descriptionLabel.text = description.label
             descriptionText.text = description.text
+        }
+    }
+}
+
+private class PhoneHolder(
+        parent: ViewGroup
+) : BaseViewHolder(parent, R.layout.adapter_station_detail_description) {
+
+    fun bind(description: StationDetailAdapterHandler.Phone) {
+        with(itemView) {
+            descriptionText.autoLinkMask = Linkify.PHONE_NUMBERS
+            descriptionLabel.text = description.label
+            descriptionText.text = description.phone
+        }
+    }
+}
+
+private class LinkHolder(
+        parent: ViewGroup
+) : BaseViewHolder(parent, R.layout.adapter_station_detail_description) {
+
+    fun bind(description: StationDetailAdapterHandler.Link) {
+        with(itemView) {
+            descriptionText.autoLinkMask = Linkify.WEB_URLS
+            descriptionLabel.text = description.label
+            descriptionText.text = description.link
         }
     }
 }
