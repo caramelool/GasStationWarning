@@ -19,6 +19,7 @@ data class Station(
         @SerializedName("hasFuel") val hasFuel: Boolean = true,
         @SerializedName("fuels") val fuels: List<Fuel>? = null,
         @SerializedName("link") val link: String? = null,
+        @SerializedName("rating") val rating: Float = 0f,
         @get:Exclude private var id: String = ""
 ): Parcelable {
 

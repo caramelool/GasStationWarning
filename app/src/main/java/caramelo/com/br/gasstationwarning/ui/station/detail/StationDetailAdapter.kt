@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.ui.BaseViewHolder
 import kotlinx.android.synthetic.main.adapter_station_detail_description.view.*
+import kotlinx.android.synthetic.main.adapter_station_detail_rating.view.*
 
 class StationDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -14,6 +15,7 @@ class StationDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         const val TYPE_FUEL = 2
         const val TYPE_PHONE = 3
         const val TYPE_LINK = 4
+        const val TYPE_RATING = 5
     }
 
     var data: List<StationDetailAdapterHandler> = listOf()
@@ -28,6 +30,7 @@ class StationDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             TYPE_FUEL -> FuelHolder(parent)
             TYPE_PHONE -> PhoneHolder(parent)
             TYPE_LINK -> LinkHolder(parent)
+            TYPE_RATING -> RatingHolder(parent)
             else -> throw IllegalStateException()
         }
     }
@@ -39,6 +42,7 @@ class StationDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is FuelHolder -> holder.bind(item as StationDetailAdapterHandler.Fuel)
             is PhoneHolder -> holder.bind(item as StationDetailAdapterHandler.Phone)
             is LinkHolder -> holder.bind(item as StationDetailAdapterHandler.Link)
+            is RatingHolder -> holder.bind(item as StationDetailAdapterHandler.Rating)
         }
     }
 
@@ -64,6 +68,9 @@ sealed class StationDetailAdapterHandler(val type: Int) {
             val label: String,
             val link: String
     ) : StationDetailAdapterHandler(StationDetailAdapter.TYPE_LINK)
+    data class Rating(
+            val value: Float
+    ) : StationDetailAdapterHandler(StationDetailAdapter.TYPE_RATING)
 }
 
 private class DescriptionHolder(
@@ -74,6 +81,18 @@ private class DescriptionHolder(
         with(itemView) {
             descriptionLabel.text = description.label
             descriptionText.text = description.text
+        }
+    }
+}
+
+private class FuelHolder(
+        parent: ViewGroup
+) : BaseViewHolder(parent, R.layout.adapter_station_detail_description) {
+
+    fun bind(fuel: StationDetailAdapterHandler.Fuel) {
+        with(itemView) {
+            descriptionLabel.text = fuel.name
+            descriptionText.text = fuel.price
         }
     }
 }
@@ -104,14 +123,15 @@ private class LinkHolder(
     }
 }
 
-private class FuelHolder(
+private class RatingHolder(
         parent: ViewGroup
-) : BaseViewHolder(parent, R.layout.adapter_station_detail_description) {
+) : BaseViewHolder(parent, R.layout.adapter_station_detail_rating) {
 
-    fun bind(fuel: StationDetailAdapterHandler.Fuel) {
+    fun bind(rating: StationDetailAdapterHandler.Rating) {
         with(itemView) {
-            descriptionLabel.text = fuel.name
-            descriptionText.text = fuel.price
+            val text = "%.1f".format(rating.value)
+            ratingBar.rating = rating.value
+            ratingText.text = text
         }
     }
 }
