@@ -129,9 +129,8 @@ private class RatingHolder(
 
     fun bind(rating: StationDetailAdapterHandler.Rating) {
         with(itemView) {
-            val text = "%.1f".format(rating.value)
             ratingBar.rating = rating.value
-            ratingText.text = text
+            ratingText.text = rating.value.toString()
         }
     }
 }
