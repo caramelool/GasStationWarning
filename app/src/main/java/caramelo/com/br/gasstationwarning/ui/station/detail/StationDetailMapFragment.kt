@@ -49,12 +49,16 @@ class StationDetailMapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap?) {
         map = googleMap
-        map?.uiSettings?.setAllGesturesEnabled(false)
+        map?.uiSettings?.apply {
+            setAllGesturesEnabled(false)
+            isZoomControlsEnabled = true
+        }
         viewModel?.detailLiveData?.observe(this, detailObserver)
     }
 
     private val detailObserver = Observer<StationDetailHandler> {
         map?.clear()
+        addGSWMarker()
         val handler = it ?: return@Observer
         when(handler) {
             is StationDetailHandler.Detail -> {
@@ -72,5 +76,15 @@ class StationDetailMapFragment : Fragment(), OnMapReadyCallback {
                 map?.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 19f))
             }
         }
+    }
+
+    private fun addGSWMarker() {
+        val devName = getString(R.string.dev_name)
+        val latlng = LatLng(-23.6301647, -46.5326461)
+        map?.addMarker(MarkerOptions().position(latlng)
+                .title(getString(R.string.app_name))
+                .snippet(getString(R.string.about_dev_name, devName))
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher_foreground)))
+                ?.showInfoWindow()
     }
 }
