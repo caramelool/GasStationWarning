@@ -70,7 +70,7 @@ class StationDetailActivity : BaseActivity(stationDetailModule.init), DetailView
         container.visibility = View.VISIBLE
         loading.visibility = View.GONE
         with(station) {
-            showWarning(!hasFull)
+            showWarning(!hasFuel)
             toolbarLayout.title = name
         }
     }

@@ -16,7 +16,7 @@ data class Station(
         @SerializedName("address") val address: String? = "",
         @SerializedName("phone") val phone: String? = null,
         @SerializedName("description") val description: String? = null,
-        @SerializedName("hasFull") val hasFull: Boolean = true,
+        @SerializedName("hasFuel") val hasFuel: Boolean = true,
         @SerializedName("fuels") val fuels: List<Fuel>? = null,
         @SerializedName("link") val link: String? = null,
         @get:Exclude private var id: String = ""

@@ -66,6 +66,13 @@ class StationDetailInfoFragment : BaseFragment() {
     private fun bindAdapter(station: Station) {
         val list = mutableListOf<StationDetailAdapterHandler>()
         with(station) {
+            if (!name.isNullOrEmpty()) {
+                val handler = StationDetailAdapterHandler.Description(
+                        getString(R.string.name),
+                        name!!
+                )
+                list.add(handler)
+            }
             fuels?.forEach {
                 val handler = StationDetailAdapterHandler.Fuel(
                         it.name,

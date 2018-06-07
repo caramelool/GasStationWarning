@@ -5,6 +5,7 @@
     <string name="app_description">Find gas stations and the best economy and safety option for your car</string>
     <string name="continue_anonymous">Continue without login</string>
     <string name="station_empty_warning">Station Without Full</string>
+    <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="description">Description</string>
     <string name="phone">Phone</string>
@@ -22,6 +23,8 @@
     <string name="empty_comment">Comment list is empty</string>
     <string name="title_delete_comment">Comment delete</string>
     <string name="message_delete_comment">Are you sure that like to delete this comment?</string>
+    <string name="title_logout">Logout</string>
+    <string name="message_logout">Are you sure that like to logout?</string>
     <string name="about_dev_name">Developed by %s</string>
     <string name="about_dev_rm">RM: %s</string>
 

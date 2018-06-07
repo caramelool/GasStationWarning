@@ -1,6 +1,7 @@
 package caramelo.com.br.gasstationwarning.ui.about
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,11 +36,28 @@ class AboutFragment : BaseFragment(aboutModule.init) {
         devRmTextView.text = getString(R.string.about_dev_rm, devRm)
 
         logoutButton.setOnClickListener {
-            val context = context ?: return@setOnClickListener
-            viewModel.signOut()
-            val intent = LoginActivity.getIntent(context)
-            context.startActivity(intent)
-            activity?.finish()
+            showLogoutDialog()
         }
+    }
+
+    private fun showLogoutDialog() {
+        val context = context ?: return
+        AlertDialog.Builder(context)
+                .setTitle(R.string.title_logout)
+                .setMessage(R.string.message_logout)
+                .setPositiveButton(R.string.yes, { _, _ ->
+                    doLogout()
+                })
+                .setNegativeButton(R.string.no, null)
+                .show()
+
+    }
+
+    private fun doLogout() {
+        val context = context ?: return
+        viewModel.signOut()
+        val intent = LoginActivity.getIntent(context)
+        context.startActivity(intent)
+        activity?.finish()
     }
 }

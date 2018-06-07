@@ -3,6 +3,7 @@
     <string name="app_description">Localize postos de abastecimento e encontre a melhor opção em economia e segurança para o seu carro</string>
     <string name="continue_anonymous">Continue sem logar</string>
     <string name="station_empty_warning">Posto sem Combustível</string>
+    <string name="name">Nome</string>
     <string name="address">Endereço</string>
     <style name="description">Descrição</style>
     <string name="phone">Telefone</string>
@@ -20,6 +21,8 @@
     <string name="empty_comment">Nenhum comentário</string>
     <string name="title_delete_comment">Deletar comentário</string>
     <string name="message_delete_comment">Deseja realmente deletar esse comentário?</string>
+    <string name="title_logout">Sair</string>
+    <string name="message_logout">Deseja realmente sair?</string>
     <string name="about_dev_name">Desenvolvido por %s</string>
 
     <string name="title_station">Postos</string>

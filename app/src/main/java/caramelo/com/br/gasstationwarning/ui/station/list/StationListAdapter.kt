@@ -1,6 +1,7 @@
 package caramelo.com.br.gasstationwarning.ui.station.list
 
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.ViewGroup
 import caramelo.com.br.gasstationwarning.R
 import caramelo.com.br.gasstationwarning.data.model.Station
@@ -35,6 +36,8 @@ class StationListAdapter(
 
                 stationNameTextView.text = station.name
                 stationAddressTextView.text = station.address
+                warningFuelImage.visibility = if (station.hasFuel) View.GONE
+                                                else View.VISIBLE
 
                 setOnClickListener {
                     onStationClicked(station)
