@@ -1,7 +1,6 @@
 package caramelo.com.br.gasstationwarning.ui.splash
 
 import android.arch.lifecycle.Observer
-import android.content.Intent
 import android.os.Bundle
 import caramelo.com.br.gasstationwarning.ui.BaseActivity
 import caramelo.com.br.gasstationwarning.ui.home.HomeActivity

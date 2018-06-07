@@ -1,8 +1,8 @@
 package caramelo.com.br.gasstationwarning.data.fcm
 
 import android.util.Log
-import com.google.firebase.iid.FirebaseInstanceIdService
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.FirebaseInstanceIdService
 
 private const val TAG = "FCMIdService"
 
