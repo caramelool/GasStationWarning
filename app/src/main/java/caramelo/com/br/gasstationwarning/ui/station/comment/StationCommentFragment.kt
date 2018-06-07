@@ -1,6 +1,5 @@
 package caramelo.com.br.gasstationwarning.ui.station.comment
 
-
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -30,8 +29,11 @@ class StationCommentFragment : BaseFragment(stationCommentModule.init) {
 
     private val viewModel: StationCommentViewModel by kodein.instance()
     private val adapter = StationCommentAdapter { comment ->
-        viewModel.checkDeleteComment(comment)
+        if (viewModel.canDeleteComment(comment)) {
+            showDeleteDialog(comment)
+        }
     }
+    private var deleteDialog: AlertDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,12 +56,6 @@ class StationCommentFragment : BaseFragment(stationCommentModule.init) {
         }
 
         viewModel.commentLiveData.observe(this, detailObserver)
-        viewModel.deleteLiveData.observe(this, Observer<Comment> {
-            if (it != null) {
-                showDeleteDialog(it)
-            }
-        })
-
         viewModel.listComments()
     }
 
@@ -80,7 +76,8 @@ class StationCommentFragment : BaseFragment(stationCommentModule.init) {
 
     private fun showDeleteDialog(comment: Comment) {
         val context = context ?: return
-        AlertDialog.Builder(context)
+        if (deleteDialog?.isShowing == true) return
+        deleteDialog = AlertDialog.Builder(context)
                 .setTitle(R.string.title_delete_comment)
                 .setMessage(R.string.message_delete_comment)
                 .setPositiveButton(R.string.yes, { _, _ ->

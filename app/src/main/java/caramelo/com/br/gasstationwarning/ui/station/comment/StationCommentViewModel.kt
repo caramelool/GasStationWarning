@@ -18,8 +18,6 @@ class StationCommentViewModel(
 
     val commentLiveData = MutableLiveData<List<Comment>>()
 
-    val deleteLiveData = MutableLiveData<Comment>()
-
     fun listComments() {
         repository.list(station.getId())
                 .observe({lifecycle}) {
@@ -36,11 +34,8 @@ class StationCommentViewModel(
         repository.add(comment)
     }
 
-    fun checkDeleteComment(comment: Comment) {
-        if (comment.user?.id == userManager.getUser().id) {
-            deleteLiveData.value = comment
-        }
-        deleteLiveData.value = null
+    fun canDeleteComment(comment: Comment): Boolean {
+        return comment.user?.id == userManager.getUser().id
     }
 
     fun deleteComment(comment: Comment) {
