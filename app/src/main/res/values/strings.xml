@@ -32,7 +32,7 @@
     <string name="facebook_app_id" translatable="false">330959494098772</string>
 
     <string name="title_activity_login" />
-    <string name="title_activity_home">Gas Station Warning</string>
+    <string name="title_activity_home">@string/app_name</string>
 
     <string name="title_station">Stations</string>
     <string name="title_about">About</string>
