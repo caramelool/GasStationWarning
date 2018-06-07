@@ -19,6 +19,7 @@ class StationRepository(
                     null -> {
                         val list = querySnapshot
                                 ?.map { document -> Station.fromDocument(document) }
+                                ?.sortedByDescending { it.rating }
                                 ?.sortedByDescending { it.hasFuel }
                                 ?: listOf()
                         StationRepositoryReceiver.List(list)
