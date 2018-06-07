@@ -24,16 +24,17 @@ class StationListViewModel(
     private fun doList() {
         showLoading()
         repository.list().observe({lifecycle}) { receiver ->
-            when(receiver) {
+            val handler = when(receiver) {
                 is StationRepositoryReceiver.List -> {
-                    val handler = StationListHandle.Receiver(receiver.list)
-                    stationLiveData?.postValue(handler)
+                    if (receiver.list.isEmpty()) {
+                        StationListHandle.Receiver(receiver.list)
+                    } else {
+                        StationListHandle.Empty()
+                    }
                 }
-                is StationRepositoryReceiver.Exception -> {
-                    val handler = StationListHandle.Empty()
-                    stationLiveData?.postValue(handler)
-                }
+                else -> StationListHandle.Empty()
             }
+            stationLiveData?.postValue(handler)
 
         }
     }
