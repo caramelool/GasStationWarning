@@ -33,12 +33,15 @@ class StationListAdapter(
 
         fun bind(station: Station) {
             with(itemView) {
-
                 stationNameTextView.text = station.name
                 stationAddressTextView.text = station.address
-                warningFuelImage.visibility = if (station.hasFuel) View.GONE
-                                                else View.VISIBLE
-
+                if (station.hasFuel) {
+                    warningFuelImage.visibility = View.GONE
+                    itemView.alpha = 1f
+                } else {
+                    warningFuelImage.visibility = View.VISIBLE
+                    itemView.alpha = 0.6f
+                }
                 setOnClickListener {
                     onStationClicked(station)
                 }
