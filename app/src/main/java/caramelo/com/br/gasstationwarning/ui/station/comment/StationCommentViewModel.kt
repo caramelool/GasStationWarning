@@ -1,7 +1,6 @@
 package caramelo.com.br.gasstationwarning.ui.station.comment
 
 import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import caramelo.com.br.gasstationwarning.data.UserManager

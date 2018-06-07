@@ -15,7 +15,6 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import kotlinx.android.synthetic.main.activity_login.*
-
 import org.kodein.di.generic.instance
 
 class LoginActivity : BaseActivity(loginModule.init) {
@@ -49,7 +48,8 @@ class LoginActivity : BaseActivity(loginModule.init) {
     private val stepObserver = Observer<LoginStep> { step ->
         when(step) {
             is LoginStep.Success -> openHome()
-            is LoginStep.Fail -> { showLogin() }
+            is LoginStep.Fail,
+            is LoginStep.Login -> { showLogin() }
             is LoginStep.Loading -> { showLoading() }
         }
     }
@@ -62,7 +62,7 @@ class LoginActivity : BaseActivity(loginModule.init) {
             }
 
             override fun onCancel() {
-                viewModel.handleError()
+                viewModel.handleCancel()
             }
 
             override fun onError(error: FacebookException?) {

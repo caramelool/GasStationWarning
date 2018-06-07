@@ -2,6 +2,7 @@ package caramelo.com.br.gasstationwarning.ui.login
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.crashlytics.android.Crashlytics
 import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -40,7 +41,12 @@ class LoginViewModel(
                 }
     }
 
+    fun handleCancel() {
+        loginLiveData.postValue(LoginStep.Login())
+    }
+
     fun handleError() {
+        Crashlytics.log("Login - handleError")
         loginLiveData.postValue(LoginStep.Fail())
     }
 
@@ -51,6 +57,7 @@ class LoginViewModel(
 
 sealed class LoginStep {
     class Loading: LoginStep()
+    class Login : LoginStep()
     class Success : LoginStep()
     class Fail : LoginStep()
 }

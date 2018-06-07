@@ -85,6 +85,5 @@ class StationDetailMapFragment : Fragment(), OnMapReadyCallback {
                 .title(getString(R.string.app_name))
                 .snippet(getString(R.string.about_dev_name, devName))
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher_foreground)))
-                ?.showInfoWindow()
     }
 }
