@@ -23,18 +23,23 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private var currentFragment: Fragment? = null
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_station -> {
-                loadFragment(StationListFragment.newInstance())
-                return@OnNavigationItemSelectedListener true
+                if (currentFragment !is StationListFragment) {
+                    loadFragment(StationListFragment.newInstance())
+                    return@OnNavigationItemSelectedListener true
+                }
             }
             R.id.navigation_about -> {
-                loadFragment(AboutFragment.newInstance())
-                return@OnNavigationItemSelectedListener true
+                if (currentFragment !is AboutFragment) {
+                    loadFragment(AboutFragment.newInstance())
+                    return@OnNavigationItemSelectedListener true
+                }
             }
         }
-        false
+        return@OnNavigationItemSelectedListener false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +68,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun loadFragment(fragment: Fragment) {
+        currentFragment = fragment
         supportFragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
                 .addToBackStack(null)
