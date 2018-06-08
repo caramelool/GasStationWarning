@@ -44,7 +44,7 @@ por posto que possuem combustível.
 </p>
 
 Algumas informações sobre o posto como; nome, endereço, telefone, descrição, link.
-Possibilita compartilhamento das informações. Divida a economia com seus amigos! 
+Possibilita compartilhamento das informações.
 
 ## Posto - Mapa
 
@@ -61,7 +61,7 @@ Mapa com a localização dos postos.
   <img width="300" height="600" src="screens/station_comment_delete.png">
 </p>
 
-Lista de comentários realizado por usuarios. Para deletar algum comentário,  basta pressionar e excluir.
+Lista de comentários realizado por usuarios. Para deletar o seu comentário, basta pressionar e excluir.
 
 ## Home - Sobre
 <img width="300" height="600" src="screens/home_about.png">
