@@ -58,7 +58,7 @@ Mapa com a localização do posto
 ## Posto - Comentarios
 
 <p>
-  <img width="300" height="600" src="screens/station_comments.png">
+  <img width="300" height="600" src="screens/station_comment.png">
   <img width="300" height="600" src="screens/station_comment_delete.png">
 </p>
 
