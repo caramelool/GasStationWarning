@@ -28,7 +28,7 @@ FIAP - Trabalho Android 14mob
 ## Login
 <img width="300" height="600" src="screens/login.png">
 
-Possível realizar o login utilizando o `facebook` ou como `anonimo`
+Possível realizar o login utilizando o `facebook` ou como `anônimo`
 
 ## Home - Lista de Postos
 <img width="300" height="600" src="screens/home_stations.png">
