@@ -16,7 +16,7 @@ FIAP - Trabalho Android 14mob
   - Lifecycle
   - LiveData
   - ViewModel
-- KODEIN KOtlin DEpendency INjectio
+- KODEIN KOtlin DEpendency INjection
 - Firebase
   - Firestore
   - Authentication
