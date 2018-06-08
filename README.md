@@ -8,8 +8,7 @@ FIAP - Trabalho Android 14mob
   <img width="200" height="400" src="screens/station_map.png">
 </p>
 
-> A ideia foi criar um app para verificar informações referente 
-a postos de combustiveis, preço da gasolina, ver se tem gasolina, onde fica, detalhe, telefone, adicionar comentarios...
+> Dificuldades para abastecer? Ou encontrar a melhor economia para o seu carro? Esse App foi desenvolvido para facilitar a buscar por postos de combustíveis, com a melhor localização. Além, de informar a melhor economia para o seu bolso. Com a possibilidade de comentários e avaliações. Economize na hora de abastecer e na hora de procurar o melhor posto para o seu carro. 
 
 ## Tecnologias utilizadas
 - Kotlin
@@ -29,13 +28,13 @@ a postos de combustiveis, preço da gasolina, ver se tem gasolina, onde fica, de
 ## Login
 <img width="300" height="600" src="screens/login.png">
 
-Possivel realizar o login utilizando o `facebook` ou como `anonimo`
+Possível realizar o login utilizando o `facebook` ou como `anonimo`
 
 ## Home - Lista de Postos
 <img width="300" height="600" src="screens/home_stations.png">
 
-Lista todos os postos cadastrados no `firestore` e ordenando 
-por posto que possuem combustivel
+Lista de todos os postos cadastrados no `firestore` e ordenando 
+por posto que possuem combustível.
 
 ## Posto - Detalhe
 
@@ -44,8 +43,8 @@ por posto que possuem combustivel
   <img width="300" height="600" src="screens/station_without_fuel.png">
 </p>
 
-Algumas informações sobre o posto como nome, endereço, telefone, descrição, link.
-Possibilita compartilhamento das informações
+Algumas informações sobre o posto como; nome, endereço, telefone, descrição, link.
+Possibilita compartilhamento das informações. Divida a economia com seus amigos! 
 
 ## Posto - Mapa
 
@@ -53,7 +52,7 @@ Possibilita compartilhamento das informações
   <img width="300" height="600" src="screens/station_map.png">
 </p>
 
-Mapa com a localização do posto
+Mapa com a localização dos postos.
 
 ## Posto - Comentarios
 
@@ -62,13 +61,12 @@ Mapa com a localização do posto
   <img width="300" height="600" src="screens/station_comment_delete.png">
 </p>
 
-Lista de comentarios realizado por usuarios.
-Possibilita exclusão do comentario feito. Para deletar basta precionar o comentario.
+Lista de comentários realizado por usuarios. Para deletar algum comentário,  basta pressionar e excluir.
 
 ## Home - Sobre
 <img width="300" height="600" src="screens/home_about.png">
 
-Exibe informações sobre o desenvolvedor, versão do app e da a possibilidade de deslogar
+Exibe informações sobre o desenvolvedor, versão do app e da a possibilidade de deslogar.
 
 ## License
 
