@@ -63,7 +63,7 @@ Mapa com a localização do posto
 </p>
 
 Lista de comentarios realizado por usuarios.
-Possibilita exclusão do comentario feito.
+Possibilita exclusão do comentario feito. Para deletar basta precionar o comentario.
 
 ## Home - Sobre
 <img width="300" height="600" src="screens/home_about.png">
